@@ -3,7 +3,16 @@ let amigos = [];
 
 function adicionar() {
     let amigo = document.getElementById('nome-amigo');
-    //Aqui na linha 4 recebe o nome digitado do amigo
+
+    if (amigo.value == '') {
+        alert('Por favor, insira um nome válido.');
+        return;
+    }
+
+    if (amigos.includes(amigo.value)) {
+        alert('Nome já adicionado');
+        return;
+    }
     let lista = document.getElementById('lista-amigos');
     //Aqui na linha 6 é onde vai ficar os nomes dos amigos
 
@@ -13,10 +22,11 @@ function adicionar() {
     if (lista.textContent == '') {
         lista.textContent = amigo.value;
         //Se na lista não tiver nome nenhum adiciona apenas o nome sem virgula.
-    } else {
+    } else{
         lista.textContent = lista.textContent + ', ' + amigo.value;
         //Se na lista já tiver nome de alguem, adiciona a propria lista anterior na lista de novo com virgula e o nome do amigo adicionado.
-    } 
+
+    }
     amigo.value = '';
     //Aqui limpa o campo de adicionar toda vez que um novo amigo for adicionado
 
@@ -31,7 +41,10 @@ function sortear() {
 
 let sorteio = document.getElementById('lista-sorteio');
     //Aqui adicionamos a lista dos sorteados a variável sorteio para poder manipular.
-
+    if(amigos.length < 4) {
+        alert('Adicione mais amigos!');
+        return;
+    }
     for (i = 0; i < amigos.length; i++) 
         //Enquanto i que é igual a 0  for menor que a quantidade de nomes na lista de amigos, é para ficar rodando o código e incrementando mais 1.
         {
